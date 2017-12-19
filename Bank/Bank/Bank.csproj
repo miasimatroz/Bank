@@ -42,6 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BankSource\Bank.cs" />
+    <Compile Include="BankSource\BankOperation\AddBankProductToClient.cs" />
+    <Compile Include="BankSource\BankOperation\AddClient.cs" />
+    <Compile Include="BankSource\BankOperation\Deposit.cs" />
+    <Compile Include="BankSource\BankOperation\IBankOperation.cs" />
+    <Compile Include="BankSource\BankOperation\Transfer.cs" />
+    <Compile Include="BankSource\BankProduct\BankAccount.cs" />
+    <Compile Include="BankSource\BankProduct\BankProduct.cs" />
+    <Compile Include="BankSource\BankProduct\Credit.cs" />
+    <Compile Include="BankSource\Client.cs" />
+    <Compile Include="BankSource\Interest\IInterest.cs" />
+    <Compile Include="BankSource\Interest\InterestFivePercent.cs" />
+    <Compile Include="BankSource\Interest\InterestTenPercent.cs" />
+    <Compile Include="BankSource\Interest\InterestZero.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
