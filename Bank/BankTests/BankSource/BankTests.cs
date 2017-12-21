@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bank.BankSource.BankProduct;
+using Bank.BankSource.Interest;
+using Bank.BankSource.BankOperation;
 
 namespace Bank.BankSource.Tests
 {
@@ -51,11 +54,37 @@ namespace Bank.BankSource.Tests
             Assert.AreEqual(0, bank.GetClients().Count);
 
             string clientId = bank.GetFreeBankProductId();
-            Client client = new Client("Jan", "Nowak",clientId);
+            Client client = new Client("Jan", "Nowak", clientId);
             bank.AddClient(client);
             Assert.AreEqual(1, bank.GetClients().Count);
             Assert.AreEqual("Jan", bank.GetClientById(clientId).GetName());
             Assert.AreEqual("Nowak", bank.GetClientById(clientId).GetSurname());
+        }
+
+        [TestMethod()]
+        public void DoOperationTest()
+        {
+            string bankId = Bank.GetFreeBanktId();
+            Bank bank = new Bank(bankId);
+
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Deposit deposit = new Deposit(bankAccount, 100);
+
+            bank.DoOperation(deposit);
+            Assert.AreEqual(1100, bankAccount.GetSaldo());
+        }
+
+        [TestMethod()]
+        public void DoOperationTest2()
+        {
+            string bankId = Bank.GetFreeBanktId();
+            Bank bank = new Bank(bankId);
+
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Withdraw withdraw = new Withdraw(bankAccount, 100);
+            Assert.AreEqual(0, bank.GetOperationsList().Count);
+            bank.DoOperation(withdraw);
+            Assert.AreEqual(1, bank.GetOperationsList().Count);
         }
     }
 }

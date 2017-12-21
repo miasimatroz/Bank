@@ -60,12 +60,18 @@
     <Compile Include="BankSource\BankOperation\AddClientTests.cs" />
     <Compile Include="BankSource\BankOperation\DepositTests.cs" />
     <Compile Include="BankSource\BankOperation\TransferTests.cs" />
+    <Compile Include="BankSource\BankOperation\WithdrawTests.cs" />
+    <Compile Include="BankSource\BankProduct\BankAccountDebetTests.cs" />
+    <Compile Include="BankSource\BankProduct\BankAccountTests.cs" />
     <Compile Include="BankSource\BankProduct\CreditTests.cs" />
+    <Compile Include="BankSource\BankProduct\InvestmentTests.cs" />
     <Compile Include="BankSource\BankTests.cs" />
     <Compile Include="BankSource\ClientTests.cs" />
     <Compile Include="BankSource\Interest\InterestFivePercentTests.cs" />
+    <Compile Include="BankSource\Interest\InterestFiveTenPercentTests.cs" />
     <Compile Include="BankSource\Interest\InterestTenPercentTests.cs" />
     <Compile Include="BankSource\Interest\InterestZeroTests.cs" />
+    <Compile Include="BankSource\KIR\KIRTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

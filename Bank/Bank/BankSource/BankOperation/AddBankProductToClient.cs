@@ -9,9 +9,9 @@ namespace Bank.BankSource.BankOperation
     {
 
         Client _client;
-        BankProduct.BankProduct _bankProduct;
+        BankProduct.IBankProduct _bankProduct;
 
-        public AddBankProductToClient(Client client, BankProduct.BankProduct bankProduct)
+        public AddBankProductToClient(Client client, BankProduct.IBankProduct bankProduct)
         {
             _client = client;
             _bankProduct = bankProduct;

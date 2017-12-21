@@ -4,10 +4,10 @@ namespace Bank.BankSource.BankOperation
     public class Deposit : IBankOperation
     {
 
-        BankProduct.BankProduct _bankProduct;
+        BankProduct.IBankProduct _bankProduct;
         double _value;
         
-        public Deposit (BankProduct.BankProduct bankProduct, double value)
+        public Deposit (BankProduct.IBankProduct bankProduct, double value)
         {
             _bankProduct = bankProduct;
             _value = value;

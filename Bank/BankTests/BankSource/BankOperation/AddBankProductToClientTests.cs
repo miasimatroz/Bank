@@ -22,7 +22,7 @@ namespace Bank.BankSource.BankOperation.Tests
             AddBankProductToClient addBankProductToClient = new AddBankProductToClient(client, bankAccount);
             bank.DoOperation(addBankProductToClient);
 
-            BankProduct.BankProduct clientProduct = client.GetBankProductById(accountId);
+            BankProduct.IBankProduct clientProduct = client.GetBankProductById(accountId);
             Assert.AreNotEqual(null, clientProduct);
         }
     }

@@ -1,15 +1,20 @@
 ﻿using Bank.BankSource.Interest;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Bank.BankSource.BankProduct
 {
-    public class Credit : IBankProduct
+    public class Investment : IBankProduct
     {
+
         string _productId;
         double _saldo;
         IInterest _interest;
 
-        public Credit(string id, IInterest interest, double saldo)
+        public Investment(string id, IInterest interest, double saldo)
         {
             _productId = id;
             _saldo = saldo;

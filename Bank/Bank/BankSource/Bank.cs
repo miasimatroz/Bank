@@ -10,12 +10,13 @@ namespace Bank.BankSource
         string _freeBankProductId = "0000000000000000";
 
         string _bankId;
-//        History _history = new History();
         public List<Client> _clientsList;
+        public List<IBankOperation> _bankOperationsList;
 
         public Bank(string id)
         {
             _clientsList = new List<Client>();
+            _bankOperationsList = new List<IBankOperation>();
             _bankId = id;
         }
 
@@ -38,6 +39,24 @@ namespace Bank.BankSource
         public string GetBankId()
         {
             return _bankId;
+        }
+
+        public BankProduct.IBankProduct GetBankProductById(string id)
+        {
+            BankProduct.IBankProduct tempProduct = null;
+            foreach (Client client in _clientsList)
+            {
+                List<BankProduct.IBankProduct> listClientProduct = client.GetBankProduct();
+                foreach (BankProduct.IBankProduct product in listClientProduct)
+                {
+                    if (product.GetProductId() == id)
+                    {
+                        tempProduct = product;
+                        break;
+                    }
+                }
+            }
+            return tempProduct;
         }
 
         public void AddClient(Client client)
@@ -71,10 +90,17 @@ namespace Bank.BankSource
             try
             {
                 operation.Execute();
-            } catch (Exception ex)
+                _bankOperationsList.Add(operation);
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public List<IBankOperation> GetOperationsList()
+        {
+            return _bankOperationsList;
         }
     }
 }

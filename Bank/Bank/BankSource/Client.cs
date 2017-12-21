@@ -10,7 +10,7 @@ namespace Bank
         string _clientName;
         string _clientSurname;
         DateTime _createDate;
-        List<BankProduct> _bankProductsList = new List<BankProduct>();
+        List<IBankProduct> _bankProductsList = new List<IBankProduct>();
 
         public Client(string clientName, string clientSurname, string clientId)
         {
@@ -36,20 +36,20 @@ namespace Bank
             return _clientId;
         }
 
-        public void AddBankProduct(BankProduct bankProduct)
+        public void AddBankProduct(IBankProduct bankProduct)
         {
             _bankProductsList.Add(bankProduct);
         }
 
-        public List<BankProduct> GetBankProducts()
+        public List<IBankProduct> GetBankProducts()
         {
             return _bankProductsList;
         }
 
-        public BankProduct GetBankProductById(string id)
+        public IBankProduct GetBankProductById(string id)
         {
-            BankProduct temp = null;
-            foreach (BankProduct bankProduct in _bankProductsList)
+            IBankProduct temp = null;
+            foreach (IBankProduct bankProduct in _bankProductsList)
             {
                 if (bankProduct.GetProductId() == id)
                 {
@@ -58,5 +58,11 @@ namespace Bank
             }
             return temp;
         }
+
+        public List<IBankProduct> GetBankProduct()
+        {
+            return _bankProductsList;
+        }
+
     }
 }
