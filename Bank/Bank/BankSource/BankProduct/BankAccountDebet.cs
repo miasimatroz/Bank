@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bank.BankSource.Report;
 
 namespace Bank.BankSource.BankProduct
 {
     public class BankAccountDebet : IBankProduct
     {
-
         BankAccount _bankAccount;
         double _maxDebet;
         double _actualDebet;
@@ -55,5 +55,16 @@ namespace Bank.BankSource.BankProduct
         {
             _bankAccount.ChangeIterest(interest);
         }
+
+        public Client GetClient()
+        {
+            return _bankAccount.GetClient();
+        }
+
+        public IBankProduct Accept(IReport report)
+        {
+            return report.Visit(this);
+        }
+        
     }
 }

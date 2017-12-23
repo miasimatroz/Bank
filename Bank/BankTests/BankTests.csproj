@@ -56,8 +56,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="BankSource\BankOperation\AddBankProductToClientTests.cs" />
-    <Compile Include="BankSource\BankOperation\AddClientTests.cs" />
+    <Compile Include="BankSource\BankOperation\AddBankProductTests.cs" />
+    <Compile Include="BankSource\BankOperation\AddInterestTests.cs" />
+    <Compile Include="BankSource\BankOperation\ChangeInterestTests.cs" />
     <Compile Include="BankSource\BankOperation\DepositTests.cs" />
     <Compile Include="BankSource\BankOperation\TransferTests.cs" />
     <Compile Include="BankSource\BankOperation\WithdrawTests.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="BankSource\Interest\InterestTenPercentTests.cs" />
     <Compile Include="BankSource\Interest\InterestZeroTests.cs" />
     <Compile Include="BankSource\KIR\KIRTests.cs" />
+    <Compile Include="BankSource\Report\BankAccountSaldoOver1000Tests.cs" />
+    <Compile Include="BankSource\Report\BankProductByClientNIPTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,21 +10,24 @@ namespace Bank.BankSource.BankProduct.Tests
         [TestMethod()]
         public void GetProductIdTest()
         {
-            Investment investment = new Investment("123", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
             Assert.AreEqual("123", investment.GetProductId());
         }
 
         [TestMethod()]
         public void GetSaldoTest()
         {
-            Investment investment = new Investment("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
             Assert.AreEqual(1000, investment.GetSaldo());
         }
 
         [TestMethod()]
         public void ChangeSaldoTest()
         {
-            Investment investment = new Investment("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
             investment.ChangeSaldo(100);
             Assert.AreEqual(1100, investment.GetSaldo());
             investment.ChangeSaldo(-400);
@@ -35,14 +38,16 @@ namespace Bank.BankSource.BankProduct.Tests
         [ExpectedException(typeof(Exception), "Saldo will be less than 0")]
         public void ChangeSaldoTest2()
         {
-            Investment investment = new Investment("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
             investment.ChangeSaldo(-1100);
         }
 
         [TestMethod()]
         public void AddIterestTest()
         {
-            Investment investment = new Investment("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
             investment.AddIterest();
             Assert.AreEqual(1100, investment.GetSaldo());
         }
@@ -50,11 +55,20 @@ namespace Bank.BankSource.BankProduct.Tests
         [TestMethod()]
         public void ChangeIterestTest()
         {
-            Investment investment = new Investment("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
             investment.AddIterest();
             investment.ChangeIterest(new InterestFivePercent());
             investment.AddIterest();
             Assert.AreEqual(1155, investment.GetSaldo());
+        }
+
+        [TestMethod()]
+        public void GetClientTest()
+        {
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Investment investment = new Investment("123", new InterestTenPercent(), 1000, client);
+            Assert.AreEqual("01234567891", investment.GetClient().GetClientNIP());
         }
 
     }

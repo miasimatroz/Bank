@@ -47,18 +47,19 @@ namespace Bank.BankSource.Tests
         }
 
         [TestMethod()]
-        public void AddClientTest()
+        public void AddProductTest()
         {
             string bankId = Bank.GetFreeBanktId();
             Bank bank = new Bank(bankId);
-            Assert.AreEqual(0, bank.GetClients().Count);
+            Assert.AreEqual(0, bank.GetProducts().Count);
 
-            string clientId = bank.GetFreeBankProductId();
-            Client client = new Client("Jan", "Nowak", clientId);
-            bank.AddClient(client);
-            Assert.AreEqual(1, bank.GetClients().Count);
-            Assert.AreEqual("Jan", bank.GetClientById(clientId).GetName());
-            Assert.AreEqual("Nowak", bank.GetClientById(clientId).GetSurname());
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            IBankProduct bankProduct = new BankAccount("1", new InterestZero(), 100, client);
+
+            bank.AddBankProduct(bankProduct);
+
+            Assert.AreEqual(1, bank.GetProducts().Count);
+            Assert.AreEqual(100, bank.GetBankProductById("1").GetSaldo());
         }
 
         [TestMethod()]
@@ -67,7 +68,9 @@ namespace Bank.BankSource.Tests
             string bankId = Bank.GetFreeBanktId();
             Bank bank = new Bank(bankId);
 
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000,client);
+
             Deposit deposit = new Deposit(bankAccount, 100);
 
             bank.DoOperation(deposit);
@@ -80,7 +83,8 @@ namespace Bank.BankSource.Tests
             string bankId = Bank.GetFreeBanktId();
             Bank bank = new Bank(bankId);
 
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000, client);
             Withdraw withdraw = new Withdraw(bankAccount, 100);
             Assert.AreEqual(0, bank.GetOperationsList().Count);
             bank.DoOperation(withdraw);
