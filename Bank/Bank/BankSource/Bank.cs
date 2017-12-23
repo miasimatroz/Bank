@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Bank.BankSource.BankOperation;
+using Bank.BankSource.Report;
+using Bank.BankSource.BankProduct;
 
 namespace Bank.BankSource
 {
@@ -10,13 +12,13 @@ namespace Bank.BankSource
         string _freeBankProductId = "0000000000000000";
 
         string _bankId;
-        public List<Client> _clientsList;
         public List<IBankOperation> _bankOperationsList;
+        public List<IBankProduct> _bankProducts;
 
         public Bank(string id)
         {
-            _clientsList = new List<Client>();
             _bankOperationsList = new List<IBankOperation>();
+            _bankProducts = new List<IBankProduct>();
             _bankId = id;
         }
 
@@ -41,48 +43,28 @@ namespace Bank.BankSource
             return _bankId;
         }
 
+        public void AddBankProduct(IBankProduct bankProduct)
+        {
+            _bankProducts.Add(bankProduct);
+        }
+
         public BankProduct.IBankProduct GetBankProductById(string id)
         {
             BankProduct.IBankProduct tempProduct = null;
-            foreach (Client client in _clientsList)
-            {
-                List<BankProduct.IBankProduct> listClientProduct = client.GetBankProduct();
-                foreach (BankProduct.IBankProduct product in listClientProduct)
+                foreach (BankProduct.IBankProduct bankProduct in _bankProducts)
                 {
-                    if (product.GetProductId() == id)
+                    if (bankProduct.GetProductId() == id)
                     {
-                        tempProduct = product;
+                        tempProduct = bankProduct;
                         break;
                     }
                 }
-            }
             return tempProduct;
         }
 
-        public void AddClient(Client client)
+        public List<IBankProduct> GetProducts()
         {
-            _clientsList.Add(client);
-        }
-
-        public List<Client> GetClients()
-        {
-            return _clientsList;
-        }
-
-        public Client GetClientById(string id)
-        {
-            Client tempClient = null;
-            Console.WriteLine(_clientsList.Count);
-            foreach (Client client in _clientsList)
-            {
-                Console.WriteLine(client.GetClientId());
-                Console.WriteLine(id);
-                if (client.GetClientId() == id)
-                {
-                    tempClient = client;
-                }
-            }
-            return tempClient;
+            return _bankProducts;
         }
 
         public void DoOperation(IBankOperation operation)
@@ -101,6 +83,18 @@ namespace Bank.BankSource
         public List<IBankOperation> GetOperationsList()
         {
             return _bankOperationsList;
+        }
+
+        public List<IBankProduct> DoReport(IReport report)
+        {
+            List<IBankProduct> result = new List<IBankProduct>();
+            foreach (IBankProduct bankProduct in _bankProducts)
+            {
+                IBankProduct temp = bankProduct.Accept(report);
+                if(temp != null)
+                    result.Add(temp);
+            }
+            return result;
         }
     }
 }

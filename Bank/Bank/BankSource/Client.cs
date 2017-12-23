@@ -6,18 +6,15 @@ namespace Bank
 {
     public class Client
     {
-        string _clientId;
+        string _clientNIP;
         string _clientName;
         string _clientSurname;
-        DateTime _createDate;
-        List<IBankProduct> _bankProductsList = new List<IBankProduct>();
 
-        public Client(string clientName, string clientSurname, string clientId)
+        public Client(string clientName, string clientSurname, string clientNIP)
         {
-            _clientId = clientId;
             _clientName = clientName;
             _clientSurname = clientSurname;
-            _createDate = DateTime.Now;
+            _clientNIP = clientNIP;
 
         }
 
@@ -31,37 +28,9 @@ namespace Bank
             return _clientSurname;
         }
 
-        public string GetClientId()
+        public string GetClientNIP()
         {
-            return _clientId;
-        }
-
-        public void AddBankProduct(IBankProduct bankProduct)
-        {
-            _bankProductsList.Add(bankProduct);
-        }
-
-        public List<IBankProduct> GetBankProducts()
-        {
-            return _bankProductsList;
-        }
-
-        public IBankProduct GetBankProductById(string id)
-        {
-            IBankProduct temp = null;
-            foreach (IBankProduct bankProduct in _bankProductsList)
-            {
-                if (bankProduct.GetProductId() == id)
-                {
-                    temp = bankProduct;
-                }
-            }
-            return temp;
-        }
-
-        public List<IBankProduct> GetBankProduct()
-        {
-            return _bankProductsList;
+            return _clientNIP;
         }
 
     }

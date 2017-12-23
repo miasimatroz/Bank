@@ -43,8 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BankSource\Bank.cs" />
-    <Compile Include="BankSource\BankOperation\AddBankProductToClient.cs" />
-    <Compile Include="BankSource\BankOperation\AddClient.cs" />
+    <Compile Include="BankSource\BankOperation\AddBankProduct.cs" />
+    <Compile Include="BankSource\BankOperation\AddInterest.cs" />
+    <Compile Include="BankSource\BankOperation\ChangeInterest.cs" />
     <Compile Include="BankSource\BankOperation\Deposit.cs" />
     <Compile Include="BankSource\BankOperation\IBankOperation.cs" />
     <Compile Include="BankSource\BankOperation\Transfer.cs" />
@@ -61,11 +62,15 @@
     <Compile Include="BankSource\Interest\InterestTenPercent.cs" />
     <Compile Include="BankSource\Interest\InterestZero.cs" />
     <Compile Include="BankSource\KIR\KIR.cs" />
+    <Compile Include="BankSource\Report\BankProductByClientNIP.cs" />
+    <Compile Include="BankSource\Report\IReport.cs" />
+    <Compile Include="BankSource\Report\BankAccountSaldoOver1000.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

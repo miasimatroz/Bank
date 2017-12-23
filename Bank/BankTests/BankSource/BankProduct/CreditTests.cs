@@ -11,21 +11,24 @@ namespace Bank.BankSource.BankProduct.Tests
         [TestMethod()]
         public void GetProductIdTest()
         {
-            Credit credit = new Credit("123", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
             Assert.AreEqual("123", credit.GetProductId());
         }
 
         [TestMethod()]
         public void GetSaldoTest()
         {
-            Credit credit = new Credit("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
             Assert.AreEqual(1000, credit.GetSaldo());
         }
 
         [TestMethod()]
         public void ChangeSaldoTest()
         {
-            Credit credit = new Credit("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
             credit.ChangeSaldo(100);
             Assert.AreEqual(1100, credit.GetSaldo());
             credit.ChangeSaldo(-400);
@@ -36,14 +39,16 @@ namespace Bank.BankSource.BankProduct.Tests
         [ExpectedException(typeof(Exception), "Saldo will be less than 0")]
         public void ChangeSaldoTest2()
         {
-            Credit credit = new Credit("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
             credit.ChangeSaldo(-1100);
         }
 
         [TestMethod()]
         public void AddIterestTest()
         {
-            Credit credit = new Credit("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
             credit.AddIterest();
             Assert.AreEqual(1100, credit.GetSaldo());
         }
@@ -51,11 +56,20 @@ namespace Bank.BankSource.BankProduct.Tests
         [TestMethod()]
         public void ChangeIterestTest()
         {
-            Credit credit = new Credit("1", new InterestTenPercent(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
             credit.AddIterest();
             credit.ChangeIterest(new InterestFivePercent());
             credit.AddIterest();
             Assert.AreEqual(1155, credit.GetSaldo());
+        }
+
+        [TestMethod()]
+        public void GetClientTest()
+        {
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            Credit credit = new Credit("123", new InterestTenPercent(), 1000, client);
+            Assert.AreEqual("01234567891", credit.GetClient().GetClientNIP());
         }
     }
 }

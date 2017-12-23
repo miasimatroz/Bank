@@ -11,7 +11,8 @@ namespace Bank.BankSource.BankOperation.Tests
         [TestMethod()]
         public void ExecuteTest()
         {
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000, client);
             Withdraw withdraw = new Withdraw(bankAccount, 100);
             withdraw.Execute();
 
@@ -22,7 +23,8 @@ namespace Bank.BankSource.BankOperation.Tests
         [ExpectedException(typeof(Exception), "Don't enough saldo")]
         public void ExecuteTest2()
         {
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000, client);
             Withdraw withdraw = new Withdraw(bankAccount, 1140);
 
             withdraw.Execute();
@@ -32,7 +34,8 @@ namespace Bank.BankSource.BankOperation.Tests
         [ExpectedException(typeof(Exception), "Cannot withdraw value less then 0")]
         public void ExecuteTest3()
         {
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000, client);
             Withdraw withdraw = new Withdraw(bankAccount, -10);
 
             withdraw.Execute();

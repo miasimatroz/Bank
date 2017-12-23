@@ -12,8 +12,10 @@ namespace Bank.BankSource.BankOperation.Tests
         [TestMethod()]
         public void ExecuteTest()
         {
-            BankAccount bankAccount1 = new BankAccount("1", new InterestZero(), 1000);
-            BankAccount bankAccount2 = new BankAccount("2", new InterestZero(), 1000);
+            Client client1 = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount1 = new BankAccount("1", new InterestZero(), 1000, client1);
+            Client client2 = new Client("Jan", "Kowalski", "01234567892");
+            BankAccount bankAccount2 = new BankAccount("2", new InterestZero(), 1000,client2);
             Transfer transfer = new Transfer(bankAccount1, bankAccount2, 500);
             transfer.Execute();
 
@@ -25,8 +27,10 @@ namespace Bank.BankSource.BankOperation.Tests
         [ExpectedException(typeof(Exception), "Don't enough saldo on source account")]
         public void ExecuteTest1()
         {
-            BankAccount bankAccount1 = new BankAccount("1", new InterestZero(), 1000);
-            BankAccount bankAccount2 = new BankAccount("2", new InterestZero(), 1000);
+            Client client1 = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount1 = new BankAccount("1", new InterestZero(), 1000, client1);
+            Client client2 = new Client("Jan", "Kowalski", "01234567892");
+            BankAccount bankAccount2 = new BankAccount("2", new InterestZero(), 1000, client2);
             Transfer transfer = new Transfer(bankAccount1, bankAccount2, 1500);
             transfer.Execute();
         }

@@ -22,23 +22,11 @@ namespace Bank.Tests
         }
 
         [TestMethod()]
-        public void GetClientIdTest()
+        public void GetClientNIPTest()
         {
-            Client client = new Client("Jan", "Nowak", "1");
-            Assert.AreEqual("1", client.GetClientId());
+            Client client = new Client("Jan", "Nowak", "11234567891");
+            Assert.AreEqual("11234567891", client.GetClientNIP());
         }
 
-        [TestMethod()]
-        public void GetBankProductsTest()
-        {
-            Client client = new Client("Jan", "Nowak", "1");
-            Assert.AreEqual(0, client.GetBankProducts().Count);
-
-            BankAccount bankAccount = new BankAccount("2",new InterestTenPercent(), 100);
-            client.AddBankProduct(bankAccount);
-
-            Assert.AreEqual(1, client.GetBankProducts().Count);
-            Assert.AreEqual(typeof(BankAccount), client.GetBankProductById("2").GetType());
-        }
     }
 }

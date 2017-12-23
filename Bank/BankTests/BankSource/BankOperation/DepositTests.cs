@@ -12,7 +12,8 @@ namespace Bank.BankSource.BankOperation.Tests
         [TestMethod()]
         public void ExecuteTest1()
         {
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000,client);
             Deposit deposit = new Deposit(bankAccount, 100);
             deposit.Execute();
 
@@ -23,7 +24,8 @@ namespace Bank.BankSource.BankOperation.Tests
         [ExpectedException(typeof(Exception), "Cannot deposit value less then 0")]
         public void ExecuteTest2()
         {
-            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000);
+            Client client = new Client("Jan", "Nowak", "01234567891");
+            BankAccount bankAccount = new BankAccount("1", new InterestZero(), 1000, client);
             Deposit deposit = new Deposit(bankAccount, -100);
 
             deposit.Execute();

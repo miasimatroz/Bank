@@ -19,23 +19,19 @@ namespace Bank.BankSource.KIR.Tests
             System.Console.WriteLine(bank2.GetBankId());
 
             string bank1ClientId = bank1.GetFreeBankProductId();
-            Client bank1Client = new Client("Jan", "Nowak", bank1ClientId);
-            AddClient addBank1Client = new AddClient(bank1, bank1Client);
-            bank1.DoOperation(addBank1Client);
+            Client bank1Client = new Client("Jan", "Nowak", "1234567891");
 
             string bank2ClientId = bank2.GetFreeBankProductId();
-            Client bank2Client = new Client("Jan", "Kowalski", bank2ClientId);
-            AddClient addBank2Client = new AddClient(bank2, bank2Client);
-            bank2.DoOperation(addBank2Client);
+            Client bank2Client = new Client("Jan", "Nowak", "1234567892");
 
             string bank1AccountId = bank1.GetFreeBankProductId();
             string bank2AccountId = bank2.GetFreeBankProductId();
 
-            BankAccount bank1Account = new BankAccount(bank1AccountId, new InterestZero(), 1000);
-            BankAccount bank2Account = new BankAccount(bank2AccountId, new InterestZero(), 1000);
+            BankAccount bank1Account = new BankAccount(bank1AccountId, new InterestZero(), 1000,bank1Client);
+            BankAccount bank2Account = new BankAccount(bank2AccountId, new InterestZero(), 1000,bank2Client);
 
-            AddBankProductToClient addBa1 = new AddBankProductToClient(bank1Client, bank1Account);
-            AddBankProductToClient addBa2 = new AddBankProductToClient(bank2Client, bank2Account);
+            AddBankProduct addBa1 = new AddBankProduct(bank1, bank1Account);
+            AddBankProduct addBa2 = new AddBankProduct(bank2, bank2Account);
             bank1.DoOperation(addBa1);
             bank2.DoOperation(addBa2);
 

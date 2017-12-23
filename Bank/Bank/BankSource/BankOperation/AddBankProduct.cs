@@ -5,21 +5,21 @@ using System;
 
 namespace Bank.BankSource.BankOperation
 {
-    public class AddBankProductToClient : IBankOperation
+    public class AddBankProduct : IBankOperation
     {
 
-        Client _client;
+        Bank _bank;
         BankProduct.IBankProduct _bankProduct;
 
-        public AddBankProductToClient(Client client, BankProduct.IBankProduct bankProduct)
+        public AddBankProduct(Bank bank, BankProduct.IBankProduct bankProduct)
         {
-            _client = client;
+            _bank = bank;
             _bankProduct = bankProduct;
         }
 
         public void Execute()
         {
-            _client.AddBankProduct(_bankProduct);
+            _bank.AddBankProduct(_bankProduct);
         }
     }
 }

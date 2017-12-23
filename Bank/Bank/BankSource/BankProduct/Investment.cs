@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bank.BankSource.Report;
 
 namespace Bank.BankSource.BankProduct
 {
     public class Investment : IBankProduct
     {
-
+        Client _client;
         string _productId;
         double _saldo;
         IInterest _interest;
 
-        public Investment(string id, IInterest interest, double saldo)
+        public Investment(string id, IInterest interest, double saldo, Client client)
         {
+            _client = client;
             _productId = id;
             _saldo = saldo;
             _interest = interest;
@@ -52,5 +54,16 @@ namespace Bank.BankSource.BankProduct
         {
             _interest = interest;
         }
+
+        public Client GetClient()
+        {
+            return _client;
+        }
+
+        public IBankProduct Accept(IReport report)
+        {
+            return report.Visit(this);
+        }
+
     }
 }
